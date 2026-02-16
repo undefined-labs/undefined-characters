@@ -1,0 +1,6 @@
+export * from '../shared'
+export * from './events/characters-events'
+export * from './policies/fixed-slot.policy'
+export * from './policies/default-deletion.policy'
+export * from './services/characters.service'
+export * from './module/characters.module'
