@@ -123,3 +123,5 @@ Additional docs are available in [`docs/`](./docs):
 - [Server API](./docs/server-api.md)
 - [Client API](./docs/client-api.md)
 - [Events](./docs/events.md)
+
+For a full practical flow (store + install + create/select/update appearance + event listeners), see the concrete example in [`docs/server-api.md`](./docs/server-api.md#concrete-usage-example).
