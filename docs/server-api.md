@@ -1,5 +1,39 @@
 # Server API
 
+## Plugin-first setup
+
+Use the package as a server plugin during `Server.init()`.
+
+```ts
+import { Server } from '@open-core/framework/server'
+import { charactersServerPlugin } from '@open-core/characters/server'
+
+await Server.init({
+  mode: 'CORE',
+  plugins: [
+    charactersServerPlugin({
+      store: new MyCharacterStore(),
+      baseSlots: 3,
+      bridgeExternalEvents: true,
+    }),
+  ],
+})
+```
+
+`charactersServerPlugin(...)` wires store/policies and calls module installation internally.
+
+## charactersServerPlugin
+
+```ts
+interface CharactersServerPluginOptions {
+  store: CharacterStoreContract | Constructor<CharacterStoreContract>
+  slotPolicy?: CharacterSlotPolicyContract | Constructor<CharacterSlotPolicyContract>
+  deletionPolicy?: CharacterDeletionPolicyContract | Constructor<CharacterDeletionPolicyContract>
+  baseSlots?: number
+  bridgeExternalEvents?: boolean
+}
+```
+
 ## CharactersModule
 
 `CharactersModule` handles installation and DI registration.

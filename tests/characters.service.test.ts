@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { Server } from '@open-core/framework/server'
+import { Player } from '@open-core/framework/server'
 import { Character } from '../src/shared/domain/character'
 import { CharacterDeletionPolicyContract } from '../src/shared/contracts/character-deletion-policy.contract'
 import { CharacterSlotPolicyContract } from '../src/shared/contracts/character-slot-policy.contract'
@@ -8,7 +8,7 @@ import { ACTIVE_CHARACTER_META_KEY } from '../src/shared/constants'
 import { CharactersEvents } from '../src/server/events/characters-events'
 import { DefaultDeletionPolicy } from '../src/server/policies/default-deletion.policy'
 import { FixedSlotPolicy } from '../src/server/policies/fixed-slot.policy'
-import { CharactersService } from '../src/server/services/characters.service'
+import { Characters } from '../src/server/services/characters'
 
 class InMemoryCharacterStore extends CharacterStoreContract {
   private readonly characters = new Map<string, Character>()
@@ -58,7 +58,7 @@ describe('CharactersService', () => {
     const store = new InMemoryCharacterStore()
     const slots = new FixedSlotPolicy(1)
     const deletion = new DefaultDeletionPolicy()
-    const service = new CharactersService(store, slots, deletion)
+    const service = new Characters(store, slots, deletion)
 
     await service.create('acc:1', {
       name: { first: 'John', last: 'Doe' },
@@ -73,7 +73,7 @@ describe('CharactersService', () => {
 
   it('rejects update when character owner does not match', async () => {
     const store = new InMemoryCharacterStore()
-    const service = new CharactersService(store, new FixedSlotPolicy(2), new DefaultDeletionPolicy())
+    const service = new Characters(store, new FixedSlotPolicy(2), new DefaultDeletionPolicy())
 
     const character = await service.create('acc:1', {
       name: { first: 'John', last: 'Owner' },
@@ -88,14 +88,14 @@ describe('CharactersService', () => {
 
   it('sets active character metadata on select', async () => {
     const store = new InMemoryCharacterStore()
-    const service = new CharactersService(store, new FixedSlotPolicy(2), new DefaultDeletionPolicy())
+    const service = new Characters(store, new FixedSlotPolicy(2), new DefaultDeletionPolicy())
 
     const character = await service.create('acc:1', {
       name: { first: 'Eve', last: 'Select' },
     })
 
     const player = new MockPlayer({ clientID: 7, accountID: 'acc:1' })
-    await service.select(player as unknown as Server.Player, character.id)
+    await service.select(player as unknown as Player, character.id)
 
     const active = player.getMeta<Character>(ACTIVE_CHARACTER_META_KEY)
     expect(active?.id).toBe(character.id)
@@ -103,7 +103,7 @@ describe('CharactersService', () => {
 
   it('emits created event through internal library bus', async () => {
     const store = new InMemoryCharacterStore()
-    const service = new CharactersService(store, new FixedSlotPolicy(2), new DefaultDeletionPolicy())
+    const service = new Characters(store, new FixedSlotPolicy(2), new DefaultDeletionPolicy())
     const handler = vi.fn()
 
     CharactersEvents.once('created', handler)
@@ -119,7 +119,7 @@ describe('CharactersService', () => {
 
   it('emits selected event through internal library bus', async () => {
     const store = new InMemoryCharacterStore()
-    const service = new CharactersService(store, new FixedSlotPolicy(2), new DefaultDeletionPolicy())
+    const service = new Characters(store, new FixedSlotPolicy(2), new DefaultDeletionPolicy())
     const handler = vi.fn()
 
     const character = await service.create('acc:1', {
@@ -129,7 +129,7 @@ describe('CharactersService', () => {
     CharactersEvents.once('selected', handler)
 
     const player = new MockPlayer({ clientID: 22, accountID: 'acc:1' })
-    await service.select(player as unknown as Server.Player, character.id)
+    await service.select(player as unknown as Player, character.id)
 
     expect(handler).toHaveBeenCalledTimes(1)
     const payload = handler.mock.calls[0]![0] as {
@@ -150,7 +150,7 @@ describe('CharactersService', () => {
     const store = new InMemoryCharacterStore()
     const slots: CharacterSlotPolicyContract = new FixedSlotPolicy(2)
     const deletion: CharacterDeletionPolicyContract = new DenyDeletionPolicy()
-    const service = new CharactersService(store, slots, deletion)
+    const service = new Characters(store, slots, deletion)
 
     const character = await service.create('acc:9', {
       name: { first: 'No', last: 'Delete' },

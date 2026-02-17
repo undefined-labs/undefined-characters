@@ -3,7 +3,7 @@
 `@open-core/characters` is structured into three layers:
 
 - `shared/`: domain model, ids, DTOs, contracts, and constants
-- `server/`: event hub, policies, module wiring, and `CharactersService`
+- `server/`: event hub, policies, plugin/module wiring, and `CharactersService`
 - `client/`: minimal helper functions to emit server requests
 
 ## Design Goals
@@ -29,3 +29,5 @@ The package uses OpenCore Library API events through `createServerLibrary('chara
 
 Internal orchestration is done with `CharactersEvents.emit(...)`.
 Optional external bridge events are published with `CharactersEvents.emitExternal(...)`.
+
+Server integration is plugin-first (`charactersServerPlugin(...)`) with module compatibility retained for existing consumers.

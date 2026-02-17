@@ -1,4 +1,4 @@
-import { Server } from '@open-core/framework/server'
+import * as Server from '@open-core/framework/server'
 import { Character } from '../../shared/domain/character'
 import { CharactersError } from '../../shared/errors'
 import { ACTIVE_CHARACTER_META_KEY } from '../../shared/constants'
@@ -24,12 +24,13 @@ import {
  * This service enforces ownership checks, slot policy limits, deletion policy
  * rules, and emits characters library events for each domain action.
  */
-export class CharactersService {
+@Server.Service()
+export class Characters {
   constructor(
     private readonly store: CharacterStoreContract,
     private readonly slots: CharacterSlotPolicyContract,
     private readonly deletion: CharacterDeletionPolicyContract,
-  ) {}
+  ) { }
 
   /**
    * Returns all characters owned by the provided account.

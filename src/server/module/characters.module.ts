@@ -7,7 +7,7 @@ import {
 import { configureCharactersEvents } from '../events/characters-events'
 import { DefaultDeletionPolicy } from '../policies/default-deletion.policy'
 import { FixedSlotPolicy } from '../policies/fixed-slot.policy'
-import { CharactersService } from '../services/characters.service'
+import { Characters } from '../services/characters'
 
 type Constructor<T> = new (...args: any[]) => T
 
@@ -89,19 +89,19 @@ export class CharactersModule {
       })
     }
 
-    if (!container.isRegistered(CharactersService)) {
-      container.registerSingleton(CharactersService, CharactersService)
+    if (!container.isRegistered(Characters)) {
+      container.registerSingleton(Characters, Characters)
     }
 
     this.installed = true
   }
 
-  static resolveService(): CharactersService {
+  static resolveService(): Characters {
     if (!this.installed) {
       this.install()
     }
 
-    return this.getContainer().resolve(CharactersService)
+    return this.getContainer().resolve(Characters)
   }
 
   private static getContainer(): any {

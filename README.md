@@ -43,15 +43,21 @@ class MyCharacterStore extends CharacterStoreContract {
 }
 ```
 
-### 2) Configure and install module
+### 2) Install as OpenCore server plugin
 
 ```ts
-import { CharactersModule } from '@open-core/characters/server'
+import { Server } from '@open-core/framework/server'
+import { charactersServerPlugin } from '@open-core/characters/server'
 
-CharactersModule.setStore(new MyCharacterStore())
-CharactersModule.install({
-  baseSlots: 3,
-  bridgeExternalEvents: false,
+await Server.init({
+  mode: 'CORE',
+  plugins: [
+    charactersServerPlugin({
+      store: new MyCharacterStore(),
+      baseSlots: 3,
+      bridgeExternalEvents: false,
+    }),
+  ],
 })
 ```
 
@@ -61,6 +67,18 @@ CharactersModule.install({
 import { CharactersModule } from '@open-core/characters/server'
 
 const characters = CharactersModule.resolveService()
+```
+
+### Legacy module installation (still supported)
+
+```ts
+import { CharactersModule } from '@open-core/characters/server'
+
+CharactersModule.setStore(new MyCharacterStore())
+CharactersModule.install({
+  baseSlots: 3,
+  bridgeExternalEvents: false,
+})
 ```
 
 ## Internal Events
