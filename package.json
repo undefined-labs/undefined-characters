@@ -1,6 +1,6 @@
 {
   "name": "@undefined-labs/characters",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Characters domain library for OpenCore runtime",
   "license": "MPL-2.0",
   "publishConfig": {
