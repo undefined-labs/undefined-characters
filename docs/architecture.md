@@ -1,6 +1,6 @@
 # Architecture
 
-`@open-core/characters` is structured into three layers:
+`@undefined-labs/characters` is structured into three layers:
 
 - `shared/`: domain model, ids, DTOs, contracts, and constants
 - `server/`: event hub, policies, plugin/module wiring, and `CharactersService`

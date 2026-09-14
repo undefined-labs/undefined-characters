@@ -1,4 +1,4 @@
-# @open-core/characters
+# @undefined-labs/characters
 
 Reusable Characters domain library for OpenCore.
 
@@ -16,14 +16,14 @@ This package intentionally does not include UI, gameplay situations, concrete da
 ## Installation
 
 ```bash
-pnpm add @open-core/characters
+pnpm add @undefined-labs/characters
 ```
 
 ## Entry Points
 
-- `@open-core/characters/server`
-- `@open-core/characters/client`
-- `@open-core/characters/shared`
+- `@undefined-labs/characters/server`
+- `@undefined-labs/characters/client`
+- `@undefined-labs/characters/shared`
 
 ## Server Integration
 
@@ -32,7 +32,7 @@ pnpm add @open-core/characters
 The store is required and must implement `CharacterStoreContract`.
 
 ```ts
-import { CharacterStoreContract } from '@open-core/characters/shared'
+import { CharacterStoreContract } from '@undefined-labs/characters/shared'
 
 class MyCharacterStore extends CharacterStoreContract {
   async listByAccount(accountId) { /* ... */ }
@@ -47,7 +47,7 @@ class MyCharacterStore extends CharacterStoreContract {
 
 ```ts
 import { Server } from '@open-core/framework/server'
-import { charactersServerPlugin } from '@open-core/characters/server'
+import { charactersServerPlugin } from '@undefined-labs/characters/server'
 
 await Server.init({
   mode: 'CORE',
@@ -64,7 +64,7 @@ await Server.init({
 ### 3) Resolve and use service
 
 ```ts
-import { CharactersModule } from '@open-core/characters/server'
+import { CharactersModule } from '@undefined-labs/characters/server'
 
 const characters = CharactersModule.resolveService()
 ```
@@ -72,7 +72,7 @@ const characters = CharactersModule.resolveService()
 ### Legacy module installation (still supported)
 
 ```ts
-import { CharactersModule } from '@open-core/characters/server'
+import { CharactersModule } from '@undefined-labs/characters/server'
 
 CharactersModule.setStore(new MyCharacterStore())
 CharactersModule.install({
@@ -96,7 +96,7 @@ Internal events emitted by the library:
 Example:
 
 ```ts
-import { CharactersEvents } from '@open-core/characters/server'
+import { CharactersEvents } from '@undefined-labs/characters/server'
 
 CharactersEvents.on('created', ({ character }) => {
   // internal reaction
@@ -143,3 +143,7 @@ Additional docs are available in [`docs/`](./docs):
 - [Events](./docs/events.md)
 
 For a full practical flow (store + install + create/select/update appearance + event listeners), see the concrete example in [`docs/server-api.md`](./docs/server-api.md#concrete-usage-example).
+
+## License
+
+[MPL-2.0](./LICENSE)

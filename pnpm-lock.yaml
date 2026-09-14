@@ -7,13 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      reflect-metadata:
-        specifier: ^0.2.2
-        version: 0.2.2
-      tsyringe:
-        specifier: ^4.10.0
-        version: 4.10.0
     devDependencies:
       '@citizenfx/client':
         specifier: 2.0.22443-1
@@ -22,11 +15,17 @@ importers:
         specifier: 2.0.22443-1
         version: 2.0.22443-1
       '@open-core/framework':
-        specifier: file:../opencore-framework
-        version: file:../opencore-framework(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)
+        specifier: ^1.1.0
+        version: 1.1.2(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)
       '@types/node':
         specifier: ^24.5.2
         version: 24.10.13
+      reflect-metadata:
+        specifier: ^0.2.2
+        version: 0.2.2
+      tsyringe:
+        specifier: ^4.10.0
+        version: 4.10.0
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -201,8 +200,8 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.5':
     resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
 
-  '@open-core/framework@file:../opencore-framework':
-    resolution: {directory: ../opencore-framework, type: directory}
+  '@open-core/framework@1.1.2':
+    resolution: {integrity: sha512-Ow2PtuspSyNy/N/IMlZVZxjeFU5WqToUp3M5021qmv70o4Nv0urvqQlAPPq7GCqNq+7r/7g5ZuVLLXZ5uD11UQ==}
     peerDependencies:
       reflect-metadata: ^0.2.2
       tsyringe: ^4.10.0
@@ -490,8 +489,8 @@ packages:
   undici-types@7.16.0:
     resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
-  uuid@13.0.0:
-    resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
+  uuid@14.0.2:
+    resolution: {integrity: sha512-xZe/16rV4aa+HGSOCiY2YeLT1OybRLrrkL/Rqaq7p7GMVXjFh+6wN4oMYgjFmnSnhY8t6Xpdl2l9qmnHYuMHwQ==}
     hasBin: true
 
   vite@7.3.1:
@@ -662,11 +661,11 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
 
-  '@open-core/framework@file:../opencore-framework(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)':
+  '@open-core/framework@1.1.2(reflect-metadata@0.2.2)(tsyringe@4.10.0)(zod@4.3.6)':
     dependencies:
       reflect-metadata: 0.2.2
       tsyringe: 4.10.0
-      uuid: 13.0.0
+      uuid: 14.0.2
       zod: 4.3.6
 
   '@rollup/rollup-android-arm-eabi@4.57.1':
@@ -928,7 +927,7 @@ snapshots:
 
   undici-types@7.16.0: {}
 
-  uuid@13.0.0: {}
+  uuid@14.0.2: {}
 
   vite@7.3.1(@types/node@24.10.13):
     dependencies:

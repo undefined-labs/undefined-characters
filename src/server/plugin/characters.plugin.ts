@@ -16,7 +16,7 @@ export interface CharactersServerPluginOptions extends CharactersModuleInstallOp
 
 export function charactersServerPlugin(options: CharactersServerPluginOptions): OpenCorePlugin {
   return {
-    name: '@open-core/characters/server',
+    name: '@undefined-labs/characters/server',
     install() {
       CharactersModule.setStore(options.store)
 

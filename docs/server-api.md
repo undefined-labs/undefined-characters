@@ -6,7 +6,7 @@ Use the package as a server plugin during `Server.init()`.
 
 ```ts
 import { Server } from '@open-core/framework/server'
-import { charactersServerPlugin } from '@open-core/characters/server'
+import { charactersServerPlugin } from '@undefined-labs/characters/server'
 
 await Server.init({
   mode: 'CORE',
@@ -104,8 +104,8 @@ import {
   CharacterStoreContract,
   CharactersModule,
   CharactersService,
-} from '@open-core/characters/server'
-import type { AccountId, CharacterId } from '@open-core/characters/shared'
+} from '@undefined-labs/characters/server'
+import type { AccountId, CharacterId } from '@undefined-labs/characters/shared'
 
 class MyCharacterStore extends CharacterStoreContract {
   private readonly data = new Map<CharacterId, Character>()
