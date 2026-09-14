@@ -1,14 +1,27 @@
 {
-  "name": "@open-core/characters",
+  "name": "@undefined-labs/characters",
   "version": "0.1.0",
   "description": "Characters domain library for OpenCore runtime",
   "license": "MPL-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undefined-labs/undefined-characters.git"
+  },
+  "homepage": "https://github.com/undefined-labs/undefined-characters#readme",
+  "bugs": {
+    "url": "https://github.com/undefined-labs/undefined-characters/issues"
+  },
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
     "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
     "docs"
   ],
   "exports": {
@@ -35,6 +48,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
+    "prepublishOnly": "pnpm run clean && pnpm run build",
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.build.json --noEmit && tsc -p tsconfig.test.json --noEmit",
     "test": "vitest run",
@@ -42,16 +56,19 @@
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
-    "@open-core/framework": "*",
+    "@open-core/framework": "^1.1.0",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.10.0"
   },
   "devDependencies": {
-    "@open-core/framework": "file:../opencore-framework",
     "@citizenfx/client": "2.0.22443-1",
     "@citizenfx/server": "2.0.22443-1",
+    "@open-core/framework": "^1.1.0",
     "@types/node": "^24.5.2",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.10.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16"
-  }
+  },
+  "packageManager": "pnpm@10.28.0"
 }

@@ -58,7 +58,7 @@ describe('charactersServerPlugin', () => {
 
     await plugin.install({} as any)
 
-    expect(plugin.name).toBe('@open-core/characters/server')
+    expect(plugin.name).toBe('@undefined-labs/characters/server')
     expect(setStoreSpy).toHaveBeenCalledWith(InMemoryStore)
     expect(setSlotPolicySpy).toHaveBeenCalledWith(SlotPolicy)
     expect(setDeletionPolicySpy).toHaveBeenCalledWith(DeletionPolicy)

@@ -1,6 +1,6 @@
 # Events
 
-`@open-core/characters` emits internal domain events through `CharactersEvents`.
+`@undefined-labs/characters` emits internal domain events through `CharactersEvents`.
 
 ## Internal Events
 
@@ -27,7 +27,7 @@ These are emitted via `CharactersEvents.emitExternal(...)` with minimal stable p
 ## Listening Internally
 
 ```ts
-import { CharactersEvents } from '@open-core/characters/server'
+import { CharactersEvents } from '@undefined-labs/characters/server'
 
 CharactersEvents.on('selected', ({ player, character }) => {
   // internal runtime orchestration
